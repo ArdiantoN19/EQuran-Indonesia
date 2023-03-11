@@ -17,7 +17,9 @@ function App() {
   useEffect(() => {
     const fetchAllSurat = async () => {
       const dataSurahs = await getAllSurah();
-      setSurahs(dataSurahs);
+      setTimeout(() => {
+        setSurahs(dataSurahs);
+      }, 2000);
     };
 
     fetchAllSurat();

@@ -102,7 +102,10 @@ export default function DetailPage() {
               ></box-icon>
             </Link>
             <p className="text-xl">{nama}</p>
-            <Link to={`/surat/${suratSelanjutnya.nomor}`}>
+            <Link
+              to={`/surat/${suratSelanjutnya.nomor}`}
+              className={`${suratSelanjutnya ? "" : "hidden"}`}
+            >
               <box-icon
                 type="regular"
                 name="chevron-right"
