@@ -17,8 +17,8 @@ export default function ItemAyat({
   const [isPlaying, setIsPlaying] = useState(false);
   const audioName = useRef("");
   const onAudioHandler = () => {
-    setIsPlaying((state) => !state);
     audioName.current.play();
+    setIsPlaying(false);
   };
 
   return (
@@ -28,7 +28,9 @@ export default function ItemAyat({
           <p className="-rotate-45">{nomorAyat}</p>
         </div>
         <div className="mb-3">
-          <h3 className="text-3xl mb-7 w-full text-end">{teksArab}</h3>
+          <h3 className="text-3xl mb-7 w-full text-end leading-relaxed">
+            {teksArab}
+          </h3>
           <p
             className={`text-md text-yellow-300 w-full mb-3 ${
               latinChecked ? "block" : "hidden"
@@ -45,7 +47,15 @@ export default function ItemAyat({
             className="text-white p-1 rounded-full hover:bg-secondary"
             onClick={onAudioHandler}
           >
-            <img src={speaker} alt="speaker" className="w-5 h-5 fill-current" />
+            {isPlaying ? (
+              <box-icon name="pause" color="white" size="1.25rem"></box-icon>
+            ) : (
+              <img
+                src={speaker}
+                alt="speaker"
+                className="w-5 h-5 fill-current"
+              />
+            )}
             <audio src={audio["02"]} ref={audioName} />
           </button>
         </div>

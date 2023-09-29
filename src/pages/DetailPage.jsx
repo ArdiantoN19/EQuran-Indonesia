@@ -74,7 +74,11 @@ export default function DetailPage() {
     <LocalContext.Provider value={contextValue}>
       <div className="min-h-screen text-light px-1 mx-auto md:max-w-2xl">
         <div className="w-full flex justify-between items-center relative">
-          <button className="cursor-pointer" onClick={onPopupDeskripsiHandler}>
+          <button
+            className="cursor-pointer"
+            onClick={onPopupDeskripsiHandler}
+            title="deskripsi surah"
+          >
             <box-icon
               type="regular"
               name="info-square"
@@ -83,10 +87,28 @@ export default function DetailPage() {
             ></box-icon>
           </button>
           <div
+            className={`fixed z-[1] top-0 left-0 w-full h-screen bg-slate-800 bg-opacity-90 backdrop-blur ${
+              isDeskripsi || isSetting ? "" : "hidden"
+            }`}
+            onClick={() => {
+              setIsDeskripsi(false);
+              setIsSetting(false);
+            }}
+          ></div>
+          <div
             className={`absolute w-full top-9 left-0 bg-light text-secondary rounded p-4 z-10 origin-top-left transition duration-300 shadow-inner shadow-slate-300 ${
               isDeskripsi ? "scale-100" : "scale-0"
             }`}
           >
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-bold text-lg">Deskripsi</h3>
+              <button
+                className="block rounded p-0 hover:bg-slate-100"
+                onClick={() => setIsDeskripsi(false)}
+              >
+                <box-icon name="x" color="#aaa" size="1.7em"></box-icon>
+              </button>
+            </div>
             <p>{parser(deskripsi)}</p>
           </div>
           <div className="flex items-center justify-between gap-4">
@@ -123,16 +145,17 @@ export default function DetailPage() {
             ></box-icon>
           </button>
           <div
-            className={`absolute w-auto top-9 right-0 bg-light text-secondary rounded p-4 z-10 origin-top-right transition duration-300 shadow-inner shadow-slate-300 ${
+            className={`absolute w-auto top-9 right-0 bg-white text-secondary rounded p-4 z-10 origin-top-right transition duration-300 shadow-inner shadow-slate-300 ${
               isSetting ? "scale-100" : "scale-0"
             }`}
           >
-            <ul className="flex flex-col gap-1">
-              <li>
+            <ul className="flex flex-col gap-2 justify-center items-center">
+              <li className="py-1 px-3">
                 <input
                   type="checkbox"
                   id="latin"
                   onChange={onChangeCheckboxHandler}
+                  className=""
                 />
                 <label htmlFor="latin">Latin</label>
               </li>
@@ -145,8 +168,15 @@ export default function DetailPage() {
                 <label htmlFor="arti">Arti</label>
               </li>
               <li>
-                <input type="checkbox" id="audio" />
-                <label htmlFor="audio">Audio</label>
+                <button>
+                  Audio
+                  <box-icon
+                    type="regular"
+                    name="chevron-right"
+                    color="white"
+                    size="1.7em"
+                  ></box-icon>
+                </button>
               </li>
             </ul>
           </div>

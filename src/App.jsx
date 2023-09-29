@@ -29,12 +29,13 @@ function App() {
     return {
       isSearch,
       onClickSearchHandler,
+      surahs,
     };
   });
 
   return (
     <LocalContext.Provider value={contextValue}>
-      <div className="bg-primary min-h-full w-full pb-20">
+      <div className="bg-primary min-h-full w-full pb-10">
         <Navbar />
         <div className="max-w-screen-xl mx-auto">
           <main className="py-6 px-4">

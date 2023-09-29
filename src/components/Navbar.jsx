@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import LocalContext from "../context/Context";
 import Search from "./Search";
@@ -52,7 +52,7 @@ export default function Navbar() {
       </nav>
       <a
         href="#"
-        className={`fixed z-[999] bottom-10 right-4 w-10 h-10 rounded-full bg-slate-100/70 flex items-center justify-center hover:bg-slate-100 ${
+        className={`fixed z-[999] bottom-10 right-4 md:right-20 w-10 h-10 rounded-full bg-slate-100/70 flex items-center justify-center hover:bg-slate-100 ${
           isTop ? "hidden" : "block"
         }`}
       >
